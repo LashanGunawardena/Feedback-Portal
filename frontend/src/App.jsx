@@ -5,11 +5,12 @@ import Register from './pages/Register';
 import SubmitFeedback from './pages/SubmitFeedback';
 import MyFeedback from './pages/MyFeedback';
 import AdminDashboard from './pages/AdminDashboard';
+import LandingPage from './pages/LandingPage';
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<div>Landing Page</div>} />
+        <Route path="/" element={<LandingPage/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/submit" element={<SubmitFeedback />} />
