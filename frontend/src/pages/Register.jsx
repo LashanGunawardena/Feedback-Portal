@@ -1,9 +1,12 @@
 import axios from "axios"
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import NavBar from "../shared/NavBar"
 
 export default function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword ] = useState('')
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -15,10 +18,14 @@ export default function Register() {
       },{
         headers : {
            "Content-Type": "application/json",
-           
+
         }
       })
+
+      localStorage.setItem('token', res.data.token);
       alert("Registered successfully");
+
+      navigate('/login')
     }
     catch(err){
       console.log();
@@ -29,6 +36,7 @@ export default function Register() {
     <>
     {/* TODO: Implement Register Page */}
       <div>
+        <NavBar/>
         <h1>Register Page</h1>
         <form onSubmit={handleRegister}>
           <div>

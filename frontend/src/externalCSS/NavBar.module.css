@@ -1,11 +1,9 @@
-body{
+.navBar{
+    list-style-type: none;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.title{
-    font-size: 5rem;
+    gap: 2rem;
+    font-size: 1rem;
     font-weight: 600;
-    margin-top: 5rem;
 }
