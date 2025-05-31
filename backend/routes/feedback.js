@@ -7,13 +7,15 @@ const prisma = new PrismaClient();
 // GET /feedback
 router.get('/', async (req, res) => {
   // TODO: Return feedback for logged in user
-  res.status(501).json({ message: 'Not implemented. Implement get feedback logic.' });
+
 });
 
 // POST /feedback
 router.post('/', async (req, res) => {
   // TODO: Save new feedback for user
-  res.status(501).json({ message: 'Not implemented. Implement post feedback logic.' });
+  const { message } = req.body;
+
+  
 });
 
 module.exports = router;

@@ -17,6 +17,9 @@ app.use('/auth', authRoutes);
 app.use('/feedback', authMiddleware, feedbackRoutes);
 app.use('/admin', authMiddleware, adminRoutes);
 
-app.listen(3001, () => {
-  console.log('Server running on http://localhost:3001');
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
+  

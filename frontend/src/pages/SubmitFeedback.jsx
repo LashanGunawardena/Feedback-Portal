@@ -1,21 +1,29 @@
 import axios from 'axios';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function SubmitFeedback() {
   const [feedBack, setFeedBack] = useState('');
+  const navigate = useNavigate();
 
   const handleSendFeedBack = async (e) => {
     e.preventDefault();
 
     try{
-      const res = await axios.post('', {
-        content: "feedBack",
-          // headers: {
-            
-          // }
+      const token = localStorage.getItem('token');
+
+      const res = await axios.post(`http://localhost:3001/feedback/`, {
+        method: "POST",
+        message: feedBack,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
       })
 
       alert("Feedback sent successfully!");
       setFeedBack('');
+      navigate('/')
     }
     catch(err){
       console.error("Error sending feedback:", err);
