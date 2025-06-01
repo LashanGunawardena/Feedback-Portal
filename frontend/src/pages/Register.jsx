@@ -25,7 +25,7 @@ export default function Register() {
       localStorage.setItem('token', res.data.token);
       alert("Registered successfully");
 
-      navigate('/login')
+      navigate('/')
     }
     catch(err){
       console.log();

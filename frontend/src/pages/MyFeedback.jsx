@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios'
+import NavBar from '../shared/NavBar';
 
 export default function MyFeedback() {
 
@@ -28,6 +29,7 @@ export default function MyFeedback() {
     <>
     {/* TODO: Implement My Feedback Page */}
       <div>
+        <NavBar/>
           <h2>My FeedBack</h2>
           <div>
             

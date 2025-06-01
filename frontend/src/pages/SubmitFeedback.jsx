@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../shared/NavBar';
 
 export default function SubmitFeedback() {
   const [feedBack, setFeedBack] = useState('');
@@ -12,9 +13,15 @@ export default function SubmitFeedback() {
     try{
       const token = localStorage.getItem('token');
 
-      const res = await axios.post(`http://localhost:3001/feedback/`, {
-        method: "POST",
-        message: feedBack,
+      if(!token){
+        alert("You must be logged in to submit feedback!");
+        navigate('/login');
+        return; 
+      }
+
+      const res = await axios.post(`http://localhost:3001/feedback`, {
+        message: feedBack
+      }, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
@@ -34,6 +41,7 @@ export default function SubmitFeedback() {
     <>
     {/* TODO: Implement Submit Feedback Page */}
       <div>
+        <NavBar/>
         <h1>Submit Feedback</h1>
         <form onSubmit={handleSendFeedBack}>
           <div>

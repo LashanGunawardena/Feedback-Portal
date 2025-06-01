@@ -9,7 +9,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault;
+    e.preventDefault();
 
     try{
       const res = await axios.post(`http://localhost:3001/auth/login`,{
