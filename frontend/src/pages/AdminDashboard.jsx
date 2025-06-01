@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import NavBar from '../shared/NavBar';
+import styles from './../externalCSS/AdminDashboard.module.css';
+
 export default function AdminDashboard() {
   const [ allFeedBack, setAllFeedBack ] = useState([]);
   const [ message, setMessage ] = useState('');
@@ -16,20 +19,20 @@ export default function AdminDashboard() {
       }
 
       try {
-        const res = await fetch('http://localhost:3001/admin/feedback', {
+        const res = await axios.get('http://localhost:3001/admin/feedback', {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`
           }
         });
 
-        const data = await res.json();
+        const data = res.data;
 
         if (!data.success) {
-          setMessage(data.message || 'Access denied.');
+          setMessage(data.message);
         } 
         else if (data.feedback.length === 0) {
-          setMessage(data.message || 'No feedback available.');
+          setMessage(data.message);
         } 
         else {
           setAllFeedBack(data.feedback);
@@ -43,24 +46,68 @@ export default function AdminDashboard() {
     fetchAdminData();
   }, []);
 
+  const handleDeleteButton = async (feedBackId) => {
+    const token = localStorage.getItem('token');
+
+    if(!token){
+      alert("You must be logged in to delete feedback!");
+      navigate('/login');
+      return; 
+    }
+
+    try{
+      const res = await axios.delete(`http://localhost:3001/admin/feedback/${feedBackId}`,{
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      })
+      const data = res.data;
+
+      if(data.success){
+        setAllFeedBack(allFeedBack.filter(feedback => feedback.id !== feedBackId));
+        alert("Feedback deleted successfully!");
+      }
+    }
+    catch(err){
+      console.error(err);
+      alert(`Error deleting feedback`);
+    }
+  }
+
   return (
     <>
     {/* TODO: Implement Admin Dashboard Page */}
-      <div>
-        <NavBar/>
-        <h1>Admin Dashboard</h1>
-        <p>Welcome to the Admin Dashboard. Here you can manage users, view feedback, and perform administrative tasks.</p>
-        {message && <p style={{ color: 'red' }}>{message}</p>} 
-        <div>
-          <ul>
-            {allFeedBack.map((feedback) => (
-              <li key={feedback.id}>
-                {feedback.user.email}
-                {feedback.message}
-                {feedback.createdAt}
-              </li>
-            ))}
-          </ul>
+      <NavBar/>
+      <div className={styles.adminDashboard}>
+        <h1 className={styles.title}>Admin Dashboard</h1>
+        {/* <p>Welcome to the Admin Dashboard. Here you can manage users, view feedback, and perform administrative tasks.</p> */}
+        {message && <p className={`${styles.restrictedMessage}`}>{message}</p>} 
+        <div className={styles.feedbackList}>
+          <table className={styles.feedbackTable}>
+            <thead>
+              <tr>
+                <th>Index</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Submitted At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allFeedBack.map((feedback, index) => (
+                <tr key={feedback.id}>
+                  <td>{index + 1}</td>
+                  <td>{feedback.user.email}</td>
+                  <td>{feedback.message}</td>
+                  <td>{new Date(feedback.createdAt).toLocaleString()}</td>
+                  <td>
+                    <button onClick={() => handleDeleteButton(feedback.id)}>Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </>

@@ -2,14 +2,21 @@ import axios from "axios"
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NavBar from "../shared/NavBar"
+import styles from './../externalCSS/Register.module.css'
 
 export default function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword ] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    if(password !== confirmPassword){
+      alert("Passwords do not match!");
+      return;
+    }
 
     try{
       const res = await axios.post(`http://localhost:3001/auth/signup`,{
@@ -34,11 +41,11 @@ export default function Register() {
   return (
     <>
     {/* TODO: Implement Register Page */}
-      <div>
-        <NavBar/>
-        <h1>Register Page</h1>
+      <NavBar/>
+      <div className={styles.register}>
+        <h1 className={styles.title}>Register Page</h1>
         <form onSubmit={handleRegister}>
-          <div>
+          <div className={styles.formGroup}>
             <label htmlFor="email">Email:</label>
             <input 
               type="email" 
@@ -49,7 +56,7 @@ export default function Register() {
               required 
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <label htmlFor="password">Password:</label>
             <input 
               type="password" 
@@ -57,6 +64,17 @@ export default function Register() {
               name="password"
               value={password}
               onChange = {(e) => setPassword(e.target.value)}
+              required 
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="confirmPassword">Confirm Password:</label>
+            <input 
+              type="password" 
+              id="confirmPassword" 
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange = {(e) => setConfirmPassword(e.target.value)}
               required 
             />
           </div>

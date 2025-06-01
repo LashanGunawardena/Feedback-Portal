@@ -1,11 +1,32 @@
-body{
+.homePage{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-.title{
-    font-size: 5rem;
+.homePage .title{
+    font-size: 4rem;
     font-weight: 600;
-    margin-top: 5rem;
+    margin-top: 3%;
+    text-align: center;
+}
+
+.homePage .title span{
+    color: #007BFF; /* Bootstrap primary color */
+}
+
+.homePage .description{
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    margin: 1rem 0;
+    width: 70%;
+}
+
+.homePage .image{
+    max-width: 40%;
+    height: auto;
+    margin: 1rem 0;
 }

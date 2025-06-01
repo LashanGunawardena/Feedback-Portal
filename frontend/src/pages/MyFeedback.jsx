@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 import NavBar from '../shared/NavBar';
+import styles from './../externalCSS/MyFeedback.module.css';
 
 export default function MyFeedback() {
 
@@ -34,16 +35,16 @@ export default function MyFeedback() {
   return (
     <>
     {/* TODO: Implement My Feedback Page */}
-      <div>
-        <NavBar/>
-          <h2>My FeedBack</h2>
-          <div>
-            <ul>
-              {myFeedBack.map((feedback) => (
-                <li key={feedback.id}>{feedback.message}</li>
-              ))}
-            </ul>
-          </div>
+    <NavBar/>
+      <div className={styles.myFeedback}>
+        <h2 className={styles.title}>My Feedback</h2>
+        <div className={styles.feedbackList}>
+          <ul>
+            {myFeedBack.map((feedback) => (
+              <li key={feedback.id}>{feedback.message}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );

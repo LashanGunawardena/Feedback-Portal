@@ -1,0 +1,51 @@
+.submitFeedBack{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.submitFeedBack .title{
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 2rem 0 3rem 0;
+}
+
+.submitFeedBack .formGroup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .submitFeedBack .formGroup label{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+} */
+
+.submitFeedBack .formGroup textarea{
+    width: 50rem;
+    height: 300px;
+    padding: 0.5rem;
+    border: 2px dashed #cac9c9;
+    border-radius: 10px;
+    resize: none;
+}
+
+.submitFeedBack .formGroup textarea:focus{
+    outline: none;
+    border-color: #000; /* Bootstrap primary color */
+}
+
+.submitFeedBack .submitButton{
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem 4rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #007BFF; /* Bootstrap primary color */
+    color: white;
+    cursor: pointer;
+    margin: 3rem 0;
+}

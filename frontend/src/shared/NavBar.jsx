@@ -21,19 +21,18 @@ export default function NavBar() {
     <>
         <nav>
             <ul className={styles.navBar}>
-                <li><Link to = '/'>Home</Link></li>
+                <li><Link to = '/'><a>Home</a></Link></li>
                 {isLoggedIn ? (
                   <>
-                    <li><Link to = '/submit'>Submit FeedBack</Link></li>
-                    <li><Link to = '/my-feedback'>My Feed</Link></li>
-                    <li><Link to = '/admin'>Admin Dashboard</Link></li>
-                    <button onClick={handleLogOut}>Logout</button>
+                    <li><Link to = '/submit'><a>Submit FeedBack</a></Link></li>
+                    <li><Link to = '/my-feedback'><a>My Feedback</a></Link></li>
+                    <li><Link to = '/admin'><a>Admin Dashboard</a></Link></li>
+                    <button onClick={handleLogOut} className={styles.logOutButton}>Logout</button>
                   </>
                 ) : (
                   <>
-                    
-                    <li><Link to = '/login'>Login</Link></li>
-                    <li><Link to = '/register'>Register</Link></li>
+                    <li><Link to = '/login'><a>Login</a></Link></li>
+                    <li><Link to = '/register'><a>Register</a></Link></li>
                   </>
                 )}
             </ul>

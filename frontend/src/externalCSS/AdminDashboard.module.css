@@ -1,0 +1,55 @@
+.adminDashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.adminDashboard .title{
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 2rem 0 3rem 0;
+}
+
+.adminDashboard .feedbackList {
+    width: 90%;
+    min-height: 440px;
+    height: auto; 
+    overflow-y: auto;
+    background-color: #fff;
+    border: 2px solid #cac9c9;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.adminDashboard .feedbackTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.adminDashboard .feedbackTable th, .adminDashboard .feedbackTable td {
+    padding: 1rem;
+    border-bottom: 1px solid #cac9c9;
+}
+
+.adminDashboard .feedbackTable th {
+    background-color: #007bffdc; 
+    font-weight: 600;
+    color: #fff;
+}
+
+.adminDashboard .feedbackTable button {
+    font-size: 1.1rem;
+    padding: 0.5rem 1.5rem;
+    background-color: #ff0000c4;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+}
+
+.adminDashboard .restrictedMessage {
+    color: red;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 2rem 0;
+}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import NavBar from '../shared/NavBar';
+import styles from './../externalCSS/Login.module.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -33,11 +34,11 @@ export default function Login() {
   return (
     <>
     {/* TODO: Implement Login Page */}
-      <div>
-        <NavBar/>
-        <h1>Login Page</h1>
+      <NavBar/>
+      <div className={styles.login}>
+        <h1 className={styles.title}>Login Page</h1>
         <form onSubmit={handleLogin}>
-          <div>
+          <div className={styles.formGroup}>
             <label htmlFor="email">Email:</label>
             <input 
               type="email" 
@@ -48,7 +49,7 @@ export default function Login() {
               required 
             />
           </div>
-          <div>
+          <div className={styles.formGroup}>
             <label htmlFor="password">Password:</label>
             <input 
               type="password" 

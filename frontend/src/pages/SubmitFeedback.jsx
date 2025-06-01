@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../shared/NavBar';
+import styles from './../externalCSS/SubmitFeedback.module.css';
 
 export default function SubmitFeedback() {
   const [feedBack, setFeedBack] = useState('');
@@ -39,12 +40,12 @@ export default function SubmitFeedback() {
   return (
     <>
     {/* TODO: Implement Submit Feedback Page */}
-      <div>
-        <NavBar/>
-        <h1>Submit Feedback</h1>
+      <NavBar/>
+      <div className={styles.submitFeedBack}>  
+        <h1 className={styles.title}>Submit Feedback</h1>
         <form onSubmit={handleSendFeedBack}>
-          <div>
-            <label htmlFor="feedback">Your Feedback:</label>
+          <div className={styles.formGroup}>
+            {/* <label htmlFor="feedback">Your Feedback:</label> */}
             <textarea 
               id="feedback" 
               name="feedback" 
@@ -52,8 +53,8 @@ export default function SubmitFeedback() {
               onChange={(e) => setFeedBack(e.target.value)}
               required>
             </textarea>
+            <button className={styles.submitButton} type="submit">Submit</button>
           </div>
-          <button type="submit">Submit</button>
         </form>
       </div>
     </>
