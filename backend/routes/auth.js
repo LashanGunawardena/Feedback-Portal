@@ -16,20 +16,20 @@ router.post('/signup', async (req, res) => {
   }
 
   try {
-    const isUserExisting = await prisma.user.findUnique({ where: { email }})
+    const isUserExisting = await prisma.user.findUnique({ where: { email }});
 
     if(isUserExisting){
-      return res.status(400).json({ message: 'User already exists!'})
+      return res.status(400).json({ message: 'User already exists!'});
     }
 
-    const passwordHash = await bcrypt.hash(password, 10)
+    const passwordHash = await bcrypt.hash(password, 10);
 
     const newUser = await prisma.user.create({
       data: {
         email,
         password: passwordHash
       }
-    })
+    });
 
     const token = jwt.sign({ 
       userId: newUser.id,
@@ -43,7 +43,6 @@ router.post('/signup', async (req, res) => {
 
   } 
   catch (err) {
-    console.error(err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
@@ -58,7 +57,7 @@ router.post('/login', async (req, res) => {
         return res.status(400).json({ message: 'Email and password are required!' });
       }
 
-      const isUserExisting = await prisma.user.findUnique({ where: { email }})
+      const isUserExisting = await prisma.user.findUnique({ where: { email }});
 
       if(!isUserExisting){
         return res.status(400).json({ message: 'Invalid email!' });
@@ -81,7 +80,6 @@ router.post('/login', async (req, res) => {
 
     }
     catch(err){
-      console.error(err);
       return res.status(500).json({ message: 'Internal server error' });
     }
 });

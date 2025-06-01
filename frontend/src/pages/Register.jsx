@@ -18,7 +18,6 @@ export default function Register() {
       },{
         headers : {
            "Content-Type": "application/json",
-
         }
       })
 
@@ -28,7 +27,7 @@ export default function Register() {
       navigate('/')
     }
     catch(err){
-      console.log();
+      alert("Registration failed!");
     }
   }
 

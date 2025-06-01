@@ -19,14 +19,14 @@ export default function Login() {
         headers: {
           "Content-Type": "application/json",
         }
-      })
+      });
 
       localStorage.setItem('token', res.data.token);
       alert("Login successfully");
       navigate('/')
     }
     catch(err){
-      console.log("Login failed!")
+      alert("Login failed!")
     }
   }
 

@@ -18,10 +18,9 @@ router.get('/', authMiddleware, async (req, res) => {
       }
     }
   )
-    res.json(feedBacks)
+    res.json(feedBacks);
   }
   catch(err){
-    console.error(err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
@@ -46,7 +45,6 @@ router.post('/', authMiddleware, async (req, res) => {
     res.status(201).json(newFeedBack);
   }
   catch(err){
-    console.error(err);
     res.status(500).json({ message: 'Internal server error' });
   }
 

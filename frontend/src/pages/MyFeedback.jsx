@@ -20,16 +20,16 @@ export default function MyFeedback() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`
           }
-        })
+        });
         setMyFeedBack(res.data);
       }
       catch(err){
-        console.error("Error fetching feedback:", err);
+        alert("Error fetching feedback:");
       }
     }
 
     fetchFeedBack();
-  }, [])
+  }, []);
 
   return (
     <>

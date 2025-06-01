@@ -14,10 +14,13 @@ router.get('/feedback', authMiddleware, async (req, res) => {
     select: {
       isAdmin: true
     }
-  })
+  });
 
   if(!user.isAdmin){
-    return res.status(403).json({ message: 'Access denied. Admins only.' });
+    return res.status(403).json({ 
+      success: false,
+      message: 'Access denied. Admins only.'
+    });
   }
 
   try{
@@ -30,15 +33,25 @@ router.get('/feedback', authMiddleware, async (req, res) => {
         }
       },
       orderBy: {
-        userId: 'asc'
+        createdAt: 'desc'
       }
     });
 
-    res.json({feedback: feedBacks});
+    if(feedBacks.length === 0){
+      return res.status(404).json({
+        success: true,
+        feedback: [],
+        message: 'No feedback found.'
+      });
+    }
+
+    res.json({
+      success: true,
+      feedback: feedBacks
+    });
   }
   catch(err){
-    console.error(err);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
 

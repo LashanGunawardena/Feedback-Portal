@@ -32,7 +32,7 @@ export default function SubmitFeedback() {
       setFeedBack('');
     }
     catch(err){
-      console.error("Error sending feedback:", err);
+      alert("Error sending feedback:");
     }
   }
 

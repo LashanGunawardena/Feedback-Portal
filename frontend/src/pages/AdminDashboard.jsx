@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../shared/NavBar';
 export default function AdminDashboard() {
   const [ allFeedBack, setAllFeedBack ] = useState([]);
+  const [ message, setMessage ] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,10 +24,19 @@ export default function AdminDashboard() {
         });
 
         const data = await res.json();
-        setAllFeedBack(data.feedback || []);
-        console.log(data);
-      } catch (err) {
-        console.error("Error fetching admin data:", err);
+
+        if (!data.success) {
+          setMessage(data.message || 'Access denied.');
+        } 
+        else if (data.feedback.length === 0) {
+          setMessage(data.message || 'No feedback available.');
+        } 
+        else {
+          setAllFeedBack(data.feedback);
+        }
+      } 
+      catch (err) {
+        alert("Error fetching admin data:");
       }
     };
 
@@ -40,17 +50,18 @@ export default function AdminDashboard() {
         <NavBar/>
         <h1>Admin Dashboard</h1>
         <p>Welcome to the Admin Dashboard. Here you can manage users, view feedback, and perform administrative tasks.</p>
+        {message && <p style={{ color: 'red' }}>{message}</p>} 
         <div>
-            <ul>
-              {allFeedBack.map((feedback) => (
-                <li key={feedback.id}>
-                  {feedback.user.email}
-                  {feedback.message}
-                  {feedback.createdAt}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul>
+            {allFeedBack.map((feedback) => (
+              <li key={feedback.id}>
+                {feedback.user.email}
+                {feedback.message}
+                {feedback.createdAt}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );
