@@ -30,7 +30,6 @@ export default function SubmitFeedback() {
 
       alert("Feedback sent successfully!");
       setFeedBack('');
-      navigate('/')
     }
     catch(err){
       console.error("Error sending feedback:", err);

@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
-const tokenAuthentication = require('../middleware/auth'); // Assuming you have an auth middleware to verify JWT
+const authMiddleware = require('../middleware/auth'); // Assuming you have an auth middleware to verify JWT
 
 const prisma = new PrismaClient();
 
 // GET /feedback
-router.get('/', tokenAuthentication, async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
   // TODO: Return feedback for logged in user
   try{
     const feedBacks = await prisma.feedback.findMany({
@@ -27,7 +27,7 @@ router.get('/', tokenAuthentication, async (req, res) => {
 });
 
 // POST /feedback
-router.post('/', tokenAuthentication, async (req, res) => {
+router.post('/', authMiddleware, async (req, res) => {
   // TODO: Save new feedback for user
   const { message } = req.body;
 

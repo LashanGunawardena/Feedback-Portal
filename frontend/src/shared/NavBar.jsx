@@ -22,15 +22,16 @@ export default function NavBar() {
         <nav>
             <ul className={styles.navBar}>
                 <li><Link to = '/'>Home</Link></li>
-                <li><Link to = '/my-feedback'>My Feed</Link></li>
-                <li><Link to = '/submit'>Submit FeedBack</Link></li>
-                <li><Link to = '/admin'>Admin Dashboard</Link></li>
                 {isLoggedIn ? (
                   <>
+                    <li><Link to = '/submit'>Submit FeedBack</Link></li>
+                    <li><Link to = '/my-feedback'>My Feed</Link></li>
+                    <li><Link to = '/admin'>Admin Dashboard</Link></li>
                     <button onClick={handleLogOut}>Logout</button>
                   </>
                 ) : (
                   <>
+                    
                     <li><Link to = '/login'>Login</Link></li>
                     <li><Link to = '/register'>Register</Link></li>
                   </>

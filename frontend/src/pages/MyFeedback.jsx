@@ -1,29 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios'
 import NavBar from '../shared/NavBar';
 
 export default function MyFeedback() {
 
-  // const [myFeedBack, setMyFeedBack] = useState([])
+  const [myFeedBack, setMyFeedBack] = useState([])
 
-  // const fetchFeedBack = async (e) => {
-  //   e.preventDefault();
+  useEffect(() => {
+    const fetchFeedBack = async () => {
+      const token = localStorage.getItem('token')
+      if(!token){
+        alert("You must be logged in to view feedback!");
+        return;
+      }
 
-  //   try{
-  //     const res = await axios.get('',{
-  //       method: "GET",
-  //       headers:{
-  //         "Content-Type": "application/json",
+      try{
+        const res = await axios.get(`http://localhost:3001/feedback`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          }
+        })
+        setMyFeedBack(res.data);
+      }
+      catch(err){
+        console.error("Error fetching feedback:", err);
+      }
+    }
 
-  //       }
-  //     })
-
-  //     const feedbackData = await res.json();
-  //   }
-  //   catch(err){
-  //     console.error("Error fetching feedback"); 
-  //   }
-  // }
+    fetchFeedBack();
+  }, [])
 
   return (
     <>
@@ -32,7 +38,11 @@ export default function MyFeedback() {
         <NavBar/>
           <h2>My FeedBack</h2>
           <div>
-            
+            <ul>
+              {myFeedBack.map((feedback) => (
+                <li key={feedback.id}>{feedback.message}</li>
+              ))}
+            </ul>
           </div>
       </div>
     </>
