@@ -1,24 +1,24 @@
-.submitFeedBack{
+.editFeedBack{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.submitFeedBack .title{
+.editFeedBack .title{
     font-size: 2.5rem;
     font-weight: 600;
     margin: 2rem 0 3rem 0;
 }
 
-.submitFeedBack .formGroup{
+.editFeedBack .formGroup{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.submitFeedBack .formGroup textarea{
+.editFeedBack .formGroup textarea{
     width: 50rem;
     height: 300px;
     padding: 0.5rem;
@@ -27,12 +27,12 @@
     resize: none;
 }
 
-.submitFeedBack .formGroup textarea:focus{
+.editFeedBack .formGroup textarea:focus{
     outline: none;
-    border-color: #000;
+    border-color: #000; 
 }
 
-.submitFeedBack .submitButton{
+.editFeedBack .submitButton{
     font-size: 1.2rem;
     font-weight: 600;
     padding: 1rem 4rem;

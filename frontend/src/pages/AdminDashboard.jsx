@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import NavBar from '../shared/NavBar';
 import styles from './../externalCSS/AdminDashboard.module.css';
@@ -6,6 +7,7 @@ import styles from './../externalCSS/AdminDashboard.module.css';
 export default function AdminDashboard() {
   const [ allFeedBack, setAllFeedBack ] = useState([]);
   const [ message, setMessage ] = useState('');
+  const navigate = useNavigate();
 
   // Fetch all feedback data for admin
   useEffect(() => {
@@ -64,7 +66,6 @@ export default function AdminDashboard() {
       }
     }
     catch(err){
-      console.error(err);
       alert(`Error deleting feedback`);
     }
   }
@@ -95,7 +96,8 @@ export default function AdminDashboard() {
                   <td>{feedback.message}</td>
                   <td>{new Date(feedback.createdAt).toLocaleString()}</td>
                   <td>
-                    <button onClick={() => handleDeleteButton(feedback.id)}>Delete</button>
+                    <button className={styles.editButton} onClick={() => navigate(`/admin/edit-feedback/${feedback.id}`)}>Edit</button>
+                    <button className={styles.deleteButton} onClick={() => handleDeleteButton(feedback.id)}>Delete</button>
                   </td>
                 </tr>
               ))}

@@ -6,6 +6,7 @@ import MyFeedback from './pages/MyFeedback';
 import AdminDashboard from './pages/AdminDashboard';
 import LandingPage from './pages/LandingPage';
 import ProtectedRoute from './shared/ProtectedRoute';
+import EditFeedbackAdmin from './pages/EditFeedbackAdmin';
 
 function App() {
   return (
@@ -14,6 +15,11 @@ function App() {
         <Route path="/" element={<LandingPage/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/admin/edit-feedback/:id" element={
+          <ProtectedRoute>
+            <EditFeedbackAdmin />
+          </ProtectedRoute>
+        } />
         <Route path="/submit" element={
           <ProtectedRoute>
             <SubmitFeedback />

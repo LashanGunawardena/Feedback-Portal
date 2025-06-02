@@ -80,5 +80,30 @@ router.delete('/feedback/:id', authMiddleware, async (req, res) => {
   }
 });
 
+//Request to update feedback status
+router.put(`/feedback/:id`, authMiddleware, async(req, res) => {
+  const feedBackId = parseInt(req.params.id);
+  const { message } = req.body;
+
+  try{
+    const updateFeedback = await prisma.feedback.update({
+      where: {
+        id: feedBackId
+      },
+      data: {
+        message
+      }
+    });
+
+    res.json({
+      success: true,
+      message: 'Feedback updated successfully'
+    })
+  }
+  catch(err){
+    res.status(500).json({ success: false, message: 'Internal server error' }); 
+  }
+})
+
 
 module.exports = router;
