@@ -18,12 +18,6 @@
     justify-content: center;
 }
 
-/* .submitFeedBack .formGroup label{
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-} */
-
 .submitFeedBack .formGroup textarea{
     width: 50rem;
     height: 300px;

@@ -10,9 +10,11 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const navigate = useNavigate();
 
+  // Handle registration form submission
   const handleRegister = async (e) => {
     e.preventDefault();
 
+    // Check if password and confirm password match
     if(password !== confirmPassword){
       alert("Passwords do not match!");
       return;

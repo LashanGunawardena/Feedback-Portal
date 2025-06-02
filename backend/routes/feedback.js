@@ -5,7 +5,7 @@ const authMiddleware = require('../middleware/auth'); // Assuming you have an au
 
 const prisma = new PrismaClient();
 
-// GET /feedback
+//Request to fetch feedback for logged in user
 router.get('/', authMiddleware, async (req, res) => {
   // TODO: Return feedback for logged in user
   try{
@@ -16,8 +16,7 @@ router.get('/', authMiddleware, async (req, res) => {
       orderBy: {
         createdAt: 'desc'
       }
-    }
-  )
+    });
     res.json(feedBacks);
   }
   catch(err){
@@ -25,11 +24,12 @@ router.get('/', authMiddleware, async (req, res) => {
   }
 });
 
-// POST /feedback
+//Request to save new feedback for logged in user
 router.post('/', authMiddleware, async (req, res) => {
   // TODO: Save new feedback for user
   const { message } = req.body;
 
+  //Checks if message is provided
   if(!message){
     return res.status(400).json({ message: 'Feedback message is required!' });
   }
@@ -40,7 +40,7 @@ router.post('/', authMiddleware, async (req, res) => {
         message,
         userId: req.user.userId
       }
-    })
+    });
 
     res.status(201).json(newFeedBack);
   }

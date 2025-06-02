@@ -7,6 +7,7 @@ export default function AdminDashboard() {
   const [ allFeedBack, setAllFeedBack ] = useState([]);
   const [ message, setMessage ] = useState('');
 
+  // Fetch all feedback data for admin
   useEffect(() => {
     const fetchAdminData = async () => {
       const token = localStorage.getItem('token');
@@ -21,12 +22,15 @@ export default function AdminDashboard() {
 
         const data = res.data;
 
+        // If the request was not successful(admin restrictions)
         if (!data.success) {
           setMessage(data.message);
         } 
+        //If there are no feedbacks available
         else if (data.feedback.length === 0) {
           setMessage(data.message);
         } 
+        //If there are feedbacks available
         else {
           setAllFeedBack(data.feedback);
         }
@@ -39,6 +43,7 @@ export default function AdminDashboard() {
     fetchAdminData();
   }, []);
 
+  // Handle delete feedback button
   const handleDeleteButton = async (feedBackId) => {
     const token = localStorage.getItem('token');
 
@@ -51,7 +56,9 @@ export default function AdminDashboard() {
       })
       const data = res.data;
 
+      // If the request was not successful(admin restrictions)
       if(data.success){
+        // Filter out the deleted feedback from the state
         setAllFeedBack(allFeedBack.filter(feedback => feedback.id !== feedBackId));
         alert("Feedback deleted successfully!");
       }

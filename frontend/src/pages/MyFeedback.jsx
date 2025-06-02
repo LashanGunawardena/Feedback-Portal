@@ -4,16 +4,12 @@ import NavBar from '../shared/NavBar';
 import styles from './../externalCSS/MyFeedback.module.css';
 
 export default function MyFeedback() {
-
   const [myFeedBack, setMyFeedBack] = useState([])
 
+  // Fetch feedback data for logged in user
   useEffect(() => {
     const fetchFeedBack = async () => {
       const token = localStorage.getItem('token')
-      // if(!token){
-      //   alert("You must be logged in to view feedback!");
-      //   return;
-      // }
 
       try{
         const res = await axios.get(`http://localhost:3001/feedback`, {
@@ -25,7 +21,7 @@ export default function MyFeedback() {
         setMyFeedBack(res.data);
       }
       catch(err){
-        alert("Error fetching feedback:");
+        alert("Error fetching feedback");
       }
     }
 

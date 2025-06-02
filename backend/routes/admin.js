@@ -5,8 +5,11 @@ const authMiddleware = require('../middleware/auth');
 
 const prisma = new PrismaClient();
 
+
+//Request to fetch all feedbacks
 router.get('/feedback', authMiddleware, async (req, res) => {
   // TODO: Fetch all feedback (admin only)
+  // Check if the user is an admin
   const user = await prisma.user.findUnique({
     where: {
       id: req.user.userId
@@ -16,6 +19,7 @@ router.get('/feedback', authMiddleware, async (req, res) => {
     }
   });
 
+  //Only if the user is an admin, it fetches all the feedback
   if(user.isAdmin){
     try{
       const feedBacks = await prisma.feedback.findMany({
@@ -31,6 +35,7 @@ router.get('/feedback', authMiddleware, async (req, res) => {
         }
       });
 
+      //Checks if there are no feedbacks currently available 
       if(feedBacks.length === 0){
         return res.status(200).json({
           success: true,
@@ -53,6 +58,8 @@ router.get('/feedback', authMiddleware, async (req, res) => {
   }
 });
 
+
+//Request to delete feedback by id
 router.delete('/feedback/:id', authMiddleware, async (req, res) => {
   const feedBackId = parseInt(req.params.id);
 

@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import NavBar from '../shared/NavBar';
 import styles from './../externalCSS/SubmitFeedback.module.css';
 
 export default function SubmitFeedback() {
   const [feedBack, setFeedBack] = useState('');
-  const navigate = useNavigate();
 
+  // Handle feedback submission
   const handleSendFeedBack = async (e) => {
     e.preventDefault();
 

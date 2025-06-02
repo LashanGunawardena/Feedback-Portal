@@ -6,11 +6,13 @@ export default function NavBar() {
   const navigate = useNavigate();
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
+  // Check if user is logged in by checking for token in localStorage
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
   }, []);
 
+  // Handle logout by removing token from localStorage
   const handleLogOut = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);

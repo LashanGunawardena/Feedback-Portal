@@ -8,6 +8,7 @@ const adminRoutes = require('./routes/admin');
 const prisma = new PrismaClient();
 const app = express();
 const dotenv = require('dotenv');
+
 dotenv.config();
 
 app.use(cors());
