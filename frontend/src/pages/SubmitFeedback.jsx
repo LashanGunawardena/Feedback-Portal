@@ -14,11 +14,11 @@ export default function SubmitFeedback() {
     try{
       const token = localStorage.getItem('token');
 
-      if(!token){
-        alert("You must be logged in to submit feedback!");
-        navigate('/login');
-        return; 
-      }
+      // if(!token){
+      //   alert("You must be logged in to submit feedback!");
+      //   navigate('/login');
+      //   return; 
+      // }
 
       const res = await axios.post(`http://localhost:3001/feedback`, {
         message: feedBack

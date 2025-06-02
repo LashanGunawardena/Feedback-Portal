@@ -13,10 +13,10 @@ export default function AdminDashboard() {
     const fetchAdminData = async () => {
       const token = localStorage.getItem('token');
 
-      if (!token) {
-        alert("You must be logged in to access the admin dashboard!");
-        navigate('/login');
-      }
+      // if (!token) {
+      //   alert("You must be logged in to access the admin dashboard!");
+      //   navigate('/login');
+      // }
 
       try {
         const res = await axios.get('http://localhost:3001/admin/feedback', {
@@ -49,11 +49,11 @@ export default function AdminDashboard() {
   const handleDeleteButton = async (feedBackId) => {
     const token = localStorage.getItem('token');
 
-    if(!token){
-      alert("You must be logged in to delete feedback!");
-      navigate('/login');
-      return; 
-    }
+    // if(!token){
+    //   alert("You must be logged in to delete feedback!");
+    //   navigate('/login');
+    //   return; 
+    // }
 
     try{
       const res = await axios.delete(`http://localhost:3001/admin/feedback/${feedBackId}`,{

@@ -10,10 +10,10 @@ export default function MyFeedback() {
   useEffect(() => {
     const fetchFeedBack = async () => {
       const token = localStorage.getItem('token')
-      if(!token){
-        alert("You must be logged in to view feedback!");
-        return;
-      }
+      // if(!token){
+      //   alert("You must be logged in to view feedback!");
+      //   return;
+      // }
 
       try{
         const res = await axios.get(`http://localhost:3001/feedback`, {

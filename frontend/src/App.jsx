@@ -6,6 +6,8 @@ import SubmitFeedback from './pages/SubmitFeedback';
 import MyFeedback from './pages/MyFeedback';
 import AdminDashboard from './pages/AdminDashboard';
 import LandingPage from './pages/LandingPage';
+import ProtectedRoute from './shared/ProtectedRoute';
+
 function App() {
   return (
     <Router>
@@ -13,9 +15,21 @@ function App() {
         <Route path="/" element={<LandingPage/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/submit" element={<SubmitFeedback />} />
-        <Route path="/my-feedback" element={<MyFeedback />} />
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/submit" element={
+          <ProtectedRoute>
+            <SubmitFeedback />
+          </ProtectedRoute>
+        } />
+        <Route path="/my-feedback" element={
+          <ProtectedRoute>
+            <MyFeedback />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin" element={
+          <ProtectedRoute>
+            <AdminDashboard />
+          </ProtectedRoute>
+        } />
         {/* TODO: Add route protection and navigation */}
       </Routes>
     </Router>
