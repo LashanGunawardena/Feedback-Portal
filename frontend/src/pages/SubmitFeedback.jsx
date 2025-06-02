@@ -14,12 +14,6 @@ export default function SubmitFeedback() {
     try{
       const token = localStorage.getItem('token');
 
-      // if(!token){
-      //   alert("You must be logged in to submit feedback!");
-      //   navigate('/login');
-      //   return; 
-      // }
-
       const res = await axios.post(`http://localhost:3001/feedback`, {
         message: feedBack
       }, {
@@ -45,7 +39,6 @@ export default function SubmitFeedback() {
         <h1 className={styles.title}>Submit Feedback</h1>
         <form onSubmit={handleSendFeedBack}>
           <div className={styles.formGroup}>
-            {/* <label htmlFor="feedback">Your Feedback:</label> */}
             <textarea 
               id="feedback" 
               name="feedback" 

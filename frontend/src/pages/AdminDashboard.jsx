@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import NavBar from '../shared/NavBar';
 import styles from './../externalCSS/AdminDashboard.module.css';
@@ -7,16 +6,10 @@ import styles from './../externalCSS/AdminDashboard.module.css';
 export default function AdminDashboard() {
   const [ allFeedBack, setAllFeedBack ] = useState([]);
   const [ message, setMessage ] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAdminData = async () => {
       const token = localStorage.getItem('token');
-
-      // if (!token) {
-      //   alert("You must be logged in to access the admin dashboard!");
-      //   navigate('/login');
-      // }
 
       try {
         const res = await axios.get('http://localhost:3001/admin/feedback', {
@@ -49,12 +42,6 @@ export default function AdminDashboard() {
   const handleDeleteButton = async (feedBackId) => {
     const token = localStorage.getItem('token');
 
-    // if(!token){
-    //   alert("You must be logged in to delete feedback!");
-    //   navigate('/login');
-    //   return; 
-    // }
-
     try{
       const res = await axios.delete(`http://localhost:3001/admin/feedback/${feedBackId}`,{
         headers: {
@@ -81,7 +68,6 @@ export default function AdminDashboard() {
       <NavBar/>
       <div className={styles.adminDashboard}>
         <h1 className={styles.title}>Admin Dashboard</h1>
-        {/* <p>Welcome to the Admin Dashboard. Here you can manage users, view feedback, and perform administrative tasks.</p> */}
         {message && <p className={`${styles.restrictedMessage}`}>{message}</p>} 
         <div className={styles.feedbackList}>
           <table className={styles.feedbackTable}>

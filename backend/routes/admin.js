@@ -32,7 +32,7 @@ router.get('/feedback', authMiddleware, async (req, res) => {
       });
 
       if(feedBacks.length === 0){
-        return res.status(404).json({
+        return res.status(200).json({
           success: true,
           feedback: [],
           message: 'No feedback found.'
