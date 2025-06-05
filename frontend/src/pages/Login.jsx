@@ -40,7 +40,7 @@ export default function Login() {
         <h1 className={styles.title}>Login Page</h1>
         <form onSubmit={handleLogin}>
           <div className={styles.formGroup}>
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Email</label>
             <input 
               type="email" 
               id="email" 
@@ -51,7 +51,7 @@ export default function Login() {
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">Password</label>
             <input 
               type="password" 
               id="password" 

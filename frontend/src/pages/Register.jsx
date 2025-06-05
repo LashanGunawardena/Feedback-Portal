@@ -48,7 +48,7 @@ export default function Register() {
         <h1 className={styles.title}>Register Page</h1>
         <form onSubmit={handleRegister}>
           <div className={styles.formGroup}>
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Email</label>
             <input 
               type="email" 
               id="email" 
@@ -59,7 +59,7 @@ export default function Register() {
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">Password</label>
             <input 
               type="password" 
               id="password" 
@@ -70,7 +70,7 @@ export default function Register() {
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="confirmPassword">Confirm Password:</label>
+            <label htmlFor="confirmPassword">Confirm Password</label>
             <input 
               type="password" 
               id="confirmPassword" 
